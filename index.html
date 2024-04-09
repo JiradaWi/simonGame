@@ -38,6 +38,43 @@
 
 </body>
 
+<script>
+  var answer = [];
+  document.addEventListener("keydown", function(event) { 
+    if( event.key == 'a' ){
+      //startgame
+      
+    }
+  }); 
 
+  function randomQuestion(){
+    var randomNum = randomNumber(1, 4);
+    var audioFile = 'sounds/';
+    switch(randomNum){
+      case 1:
+      audioFile += 'green.mp3';
+      break;
+      
+      case 2:
+      audioFile += 'red.mp3';
+      break;
+
+      case 3:
+      audioFile += 'yellow.mp3';
+      break;
+
+      case 4:
+      audioFile += 'blue.mp3';
+      break;
+    }
+
+    var sound = new Audio(audioFile);
+    sound.play();
+  }
+
+  function randomNumber(min, max){
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+</script>
 
 </html>
