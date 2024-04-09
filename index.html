@@ -13,21 +13,21 @@
   <div class="container">
     <div lass="row">
 
-      <div type="button" id="green" class="btn green">
+      <div type="button" id="green" class="btn green" onclick="clickBox('green')">
 
       </div>
 
-      <div type="button" id="red" class="btn red">
+      <div type="button" id="red" class="btn red" onclick="clickBox('red')">
 
       </div>
     </div>
 
     <div class="row">
 
-      <div type="button" id="yellow" class="btn yellow">
+      <div type="button" id="yellow" class="btn yellow" onclick="clickBox('yellow')">
 
       </div>
-      <div type="button" id="blue" class="btn blue">
+      <div type="button" id="blue" class="btn blue"  onclick="clickBox('blue')">
 
       </div>
 
@@ -42,8 +42,12 @@
   var answer = [];
   
   var isStarted = false;
+
+  var index = 0;
+
+  var score = 0;
   document.addEventListener("keydown", function(event) { 
-    if( event.key == 'a' ){
+    if( event.key == 'a' && isStarted == false){
       //startgame
       isStarted = true;
       randomQuestion();
@@ -51,6 +55,28 @@
 
    // if(i)
   }); 
+
+  function clickBox(boxclicked){
+    if( isStarted ) {
+      
+      if(answer[index] == boxclicked){
+        index++;    
+        if(answer.length == index ){
+          randomQuestion();
+          score++;
+          index = 0;
+        }    
+      }else{
+        var wrongAudio = new Audio( 'sounds/wrong.mp3');
+        wrongAudio.play();
+        index = 0;
+        score = 0;
+        
+        isStarted = false;
+      }
+    }
+    console.log('score:'+score);
+  }
 
   function randomQuestion(){
     var randomNum = randomNumber(1, 4);
@@ -72,6 +98,8 @@
       result = 'blue';
       break;
     }
+
+    answer.push(result);
 
     var sound = new Audio( 'sounds/' + result + '.mp3');
     var elementToBlink = document.getElementById(result);
