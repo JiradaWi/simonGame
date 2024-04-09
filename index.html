@@ -40,35 +40,46 @@
 
 <script>
   var answer = [];
+  
+  var isStarted = false;
   document.addEventListener("keydown", function(event) { 
     if( event.key == 'a' ){
       //startgame
-      
+      isStarted = true;
+      randomQuestion();
     }
+
+   // if(i)
   }); 
 
   function randomQuestion(){
     var randomNum = randomNumber(1, 4);
-    var audioFile = 'sounds/';
+    var result = '';
     switch(randomNum){
       case 1:
-      audioFile += 'green.mp3';
+      result = 'green';
       break;
       
       case 2:
-      audioFile += 'red.mp3';
+      result = 'red';
       break;
 
       case 3:
-      audioFile += 'yellow.mp3';
+      result = 'yellow';
       break;
 
       case 4:
-      audioFile += 'blue.mp3';
+      result = 'blue';
       break;
     }
 
-    var sound = new Audio(audioFile);
+    var sound = new Audio( 'sounds/' + result + '.mp3');
+    var elementToBlink = document.getElementById(result);
+    setTimeout(function(){
+      elementToBlink.classList.toggle('pressed');
+    }, 200);
+    elementToBlink.classList.toggle('pressed');
+   
     sound.play();
   }
 
