@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <h1 id="level-title">Press A Key to Start</h1>
+  <h1 id="level-title">Press A to Start</h1>
   <div class="container">
     <div lass="row">
 
@@ -65,14 +65,16 @@
           randomQuestion();
           score++;
           index = 0;
+          document.getElementById('level-title').innerHTML = 'score: '+score;
         }    
       }else{
         var wrongAudio = new Audio( 'sounds/wrong.mp3');
         wrongAudio.play();
         index = 0;
         score = 0;
-        
+        document.getElementById('level-title').innerHTML = 'Press A to Start';
         isStarted = false;
+        answer = [];
       }
     }
     console.log('score:'+score);
